@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
+import { LankaGamesService } from '../lanka-games.service';
 import { ModalChoosePage } from '../modal-choose/modal-choose.page';
 
 @Component({
@@ -12,8 +13,21 @@ export class OptionChoosePage implements OnInit {
   modal: any
   constructor(
     private modalController: ModalController,
-    private router: Router
-  ) { }
+    private router: Router,
+    public lankaGamesService: LankaGamesService
+  ) {
+    this.lankaGamesService.nextQuestion1.subscribe((value) => {
+      console.log(value);
+      if (true === value) {
+        this.modal.dismiss();
+        setTimeout(() => {
+          this.showModal();
+        }, 1000);
+      } else {
+        console.log("Question displaying")
+      }
+   });
+  }
 
   ngOnInit() {
     

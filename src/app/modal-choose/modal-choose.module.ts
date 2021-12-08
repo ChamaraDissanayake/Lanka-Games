@@ -6,12 +6,14 @@ import { IonicModule } from '@ionic/angular';
 import { ModalChoosePageRoutingModule } from './modal-choose-routing.module';
 
 import { ModalChoosePage } from './modal-choose.page';
+import { NgxIonicImageViewerModule } from 'ngx-ionic-image-viewer';
 
 @NgModule({
   imports: [
     CommonModule,
     IonicModule,
-    ModalChoosePageRoutingModule
+    ModalChoosePageRoutingModule,
+    NgxIonicImageViewerModule
   ],
   declarations: [ModalChoosePage]
 })

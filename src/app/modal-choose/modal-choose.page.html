@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Question 1</ion-title>
+    <ion-title>Question {{questionNo}}</ion-title>
     <div slot="end" class="close-wrapper">
       <ion-icon name="close" (click)="closeModal()"></ion-icon>
     </div>    
@@ -8,25 +8,42 @@
 </ion-header>
 
 <ion-content style="--background: rgb(127, 255, 138);">
-  <div style="padding: 10px;">
-    <img src="https://kiasl-content.s3.ap-southeast-1.amazonaws.com/uploads/promotion/2021/11/c2d9138028_1638255154.jpg" alt="Lanka Games">
+  <div style="margin: 10px; background: white;">
+
+    <img [src]="questionImageUrl" (click)="showImage(questionImageUrl)">
+    <ion-card *ngIf="questionVideoUrl != ''">
+      <video #player playinline preload="auto"  poster="{{questionVideoThumbnail}}" controls controlsList="nodownload">
+        <source [src]="questionVideoUrl" type="video/mp4">
+      </video>
+    </ion-card>
     
     <ion-list>
       <ion-radio-group (ionChange)="selectedAnswer($event)">
         <ion-list-header>
-          <ion-label>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore facilis odio totam quisquam, ea magni neque sit minus molestiae, ut aut voluptatem amet eligendi praesentium? Dolorum tenetur cum rem necessitatibus?
+          <ion-label style="font-size: large; padding: 10px;">
+            {{question}}
           </ion-label>
         </ion-list-header>
     
-        <ion-item *ngFor="let item of answers; let i = index">          
-          <!-- <label style="overflow-wrap: break-word">consectetur, adipisicing elit. Debitis omnis quia illo minima impedit </label>-->
-          <label style="overflow-wrap: break-word">{{item[1].answer}}</label>
-          <ion-radio slot="start" value="{{item[0].value}}"></ion-radio>
+        <ion-item *ngFor="let item of answers; let i = index">
+          <ion-item>
+            <ion-radio slot="start" value="{{item.value}}"></ion-radio>
+            <label style="overflow-wrap: break-word">{{item.answer}}</label>            
+          </ion-item>
+          <img (click)="showImage(item.image)" class="thumbnail" [src]="item.image">
+          <img (click)="showVideo(item.video)" class="thumbnail" [src]="item.videoThumbnail">
         </ion-item>
-    
       </ion-radio-group>
     </ion-list>
 
+    <ion-card *ngIf="videoReady">
+      <video #player playinline preload="auto" controls controlsList="nodownload">
+        <source [src]="videoUrl" type="video/mp4">
+      </video>
+    </ion-card>
+  </div>
+
+  <div class="btn-next-wrapper">
+    <ion-button class="btn-next" (click)="next()">Next</ion-button>
   </div>
 </ion-content>

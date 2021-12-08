@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import { LankaGamesService } from '../lanka-games.service';
 import { ModalNumericPage } from '../modal-numeric/modal-numeric.page';
 
 @Component({
@@ -10,8 +11,21 @@ import { ModalNumericPage } from '../modal-numeric/modal-numeric.page';
 export class OptionNumericPage implements OnInit {
   modal: any
   constructor(
-    private modalController: ModalController
-  ) { }
+    private modalController: ModalController,
+    public lankaGamesService: LankaGamesService
+  ) {
+    this.lankaGamesService.nextQuestion2.subscribe((value) => {
+      console.log(value);
+      if (true === value) {
+        this.modal.dismiss();
+        setTimeout(() => {
+          this.showModal();
+        }, 1000);
+      } else {
+        console.log("Cancelled by user")
+      }
+   });
+  }
 
   ngOnInit() {
     
