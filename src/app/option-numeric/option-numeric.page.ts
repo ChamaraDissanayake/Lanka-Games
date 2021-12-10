@@ -55,6 +55,5 @@ export class OptionNumericPage implements OnInit {
     setTimeout(() => {
       this.showModal();
     }, 1000);
-    // this.router.navigateByUrl("/home");
   }
 }
