@@ -35,6 +35,14 @@ const routes: Routes = [
     path: 'modal-choose',
     loadChildren: () => import('./modal-choose/modal-choose.module').then( m => m.ModalChoosePageModule)
   },
+  {
+    path: 'view-image',
+    loadChildren: () => import('./view-image/view-image.module').then( m => m.ViewImagePageModule)
+  },
+  {
+    path: 'view-video',
+    loadChildren: () => import('./view-video/view-video.module').then( m => m.ViewVideoPageModule)
+  },
 ];
 
 @NgModule({

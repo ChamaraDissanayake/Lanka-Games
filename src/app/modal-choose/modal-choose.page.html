@@ -3,20 +3,20 @@
     <ion-title>Question {{questionNo}}</ion-title>
     <div slot="end" class="close-wrapper">
       <ion-icon name="close" (click)="closeModal()"></ion-icon>
-    </div>    
+    </div>
   </ion-toolbar>
 </ion-header>
 
 <ion-content style="--background: rgb(127, 255, 138);">
   <div style="margin: 10px; background: white;">
 
-    <img [src]="questionImageUrl" (click)="showImage(questionImageUrl)">
+    <img style="padding: 10px;" [src]="questionImageUrl" (click)="showImage(questionImageUrl)">
     <ion-card *ngIf="questionVideoUrl != ''">
-      <video #player playinline preload="auto"  poster="{{questionVideoThumbnail}}" controls controlsList="nodownload">
+      <video playinline preload="auto" poster="{{questionVideoThumbnail}}" controls controlsList="nodownload">
         <source [src]="questionVideoUrl" type="video/mp4">
       </video>
     </ion-card>
-    
+
     <ion-list>
       <ion-radio-group (ionChange)="selectedAnswer($event)">
         <ion-list-header>
@@ -24,26 +24,33 @@
             {{question}}
           </ion-label>
         </ion-list-header>
-    
-        <ion-item *ngFor="let item of answers; let i = index">
-          <ion-item>
-            <ion-radio slot="start" value="{{item.value}}"></ion-radio>
-            <label style="overflow-wrap: break-word">{{item.answer}}</label>            
-          </ion-item>
-          <img (click)="showImage(item.image)" class="thumbnail" [src]="item.image">
-          <img (click)="showVideo(item.video)" class="thumbnail" [src]="item.videoThumbnail">
-        </ion-item>
+
+        <ion-grid>
+          <ion-row *ngFor="let item of answers; let i = index">
+            <ion-col size="9">
+              <ion-item>
+                <ion-radio slot="start" value="{{item.value}}"></ion-radio>
+                <label style="overflow-wrap: break-word">{{item.answer}}</label>
+              </ion-item>
+            </ion-col>
+            <!-- <ion-col size="1">
+              <ion-icon name="play-circle" size="large" style="color: aqua;" *ngIf="item.videoThumbnail"
+                (click)="showVideo(item.video, item.videoThumbnail)"></ion-icon>
+            </ion-col> -->
+            <ion-col size="3">
+              <img (click)="showImage(item.image)" class="thumbnail" [src]="item.image">
+              <!-- <ion-item> -->
+                <ion-icon class="play-button" name="play-circle-outline" size="large" *ngIf="item.videoThumbnail" (click)="showVideo(item.video, item.videoThumbnail)"></ion-icon>              
+                <img (click)="showVideo(item.video, item.videoThumbnail)" class="thumbnail" [src]="item.videoThumbnail">
+              <!-- </ion-item> -->
+            </ion-col>
+          </ion-row>
+        </ion-grid>
       </ion-radio-group>
     </ion-list>
-
-    <ion-card *ngIf="videoReady">
-      <video #player playinline preload="auto" controls controlsList="nodownload">
-        <source [src]="videoUrl" type="video/mp4">
-      </video>
-    </ion-card>
+    <div class="btn-next-wrapper">
+      <ion-button class="btn-next" (click)="next()">Next</ion-button>
+    </div>
   </div>
 
-  <div class="btn-next-wrapper">
-    <ion-button class="btn-next" (click)="next()">Next</ion-button>
-  </div>
 </ion-content>

@@ -1,0 +1,12 @@
+<ion-header>
+
+</ion-header>
+
+<ion-content>
+  <div class="close-wrapper">
+    <ion-icon name="close" size="large" (click)="closeImage()"></ion-icon>
+  </div>
+  <video class="video-container" playinline preload="auto"  poster="{{thumbnail}}" controls controlsList="nodownload">
+    <source [src]="url" type="video/mp4">
+  </video>
+</ion-content>

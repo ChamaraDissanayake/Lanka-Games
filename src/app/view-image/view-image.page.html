@@ -1,0 +1,15 @@
+<ion-header>
+
+</ion-header>
+
+<ion-content style="--background: black;">
+  <div class="close-wrapper">
+    <ion-icon name="close" size="large" (click)="closeImage()"></ion-icon>
+  </div>
+  
+  <ion-slides #slides style="height: -webkit-fill-available;" [options]="slideOpts">
+    <ion-slide>
+      <img [src]="url">
+    </ion-slide>
+  </ion-slides>
+</ion-content>

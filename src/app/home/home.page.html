@@ -6,14 +6,16 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <div>
-    <img src="../../assets/images/option1.jpeg" (click)="gotoOption(1)">
-  </div>
-  <div>
-    <img src="../../assets/images/option2.jpeg" (click)="gotoOption(2)">
-  </div>
-  <div>
-    <img src="../../assets/images/option3.jpeg" (click)="gotoOption(3)">
+<ion-content [fullscreen]="true" style="--background: yellowgreen;">
+  <div style="padding: 20px;">
+    <div style="margin: 5px;">
+      <img src="../../assets/images/option1.jpeg" (click)="gotoOption(1)">
+    </div>
+    <div style="margin: 5px;">
+      <img src="../../assets/images/option2.jpeg" (click)="gotoOption(2)">
+    </div>
+    <div style="margin: 5px;">
+      <img src="../../assets/images/option3.jpeg" (click)="gotoOption(3)">
+    </div>
   </div>
 </ion-content>
