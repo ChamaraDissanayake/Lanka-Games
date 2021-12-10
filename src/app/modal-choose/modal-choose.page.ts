@@ -4,7 +4,6 @@ import { ModalController } from '@ionic/angular';
 import { LankaGamesService } from '../lanka-games.service';
 import { ViewImagePage } from '../view-image/view-image.page';
 import { ViewVideoPage } from '../view-video/view-video.page';
-
 @Component({
   selector: 'app-modal-choose',
   templateUrl: './modal-choose.page.html',
@@ -28,7 +27,7 @@ export class ModalChoosePage implements OnInit {
     },
     [
       {"value":1, "answer":"Eagle", "image":"", "videoThumbnail":"https://kiasl-content.s3.ap-southeast-1.amazonaws.com/uploads/promotion/2021/11/806bb5a27f_1636020545.jpg", "video":"https://kiasl-content.s3.ap-southeast-1.amazonaws.com/uploads/promotion/2021/11/19a6d9ce75_1636020545.mp4"},
-      {"value":2, "answer":"Hawk Eagle Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique facere aut enim error eaque quidem reiciendis ducimus, molestiae provident inventore possimus, unde recusandae, voluptatum obcaecati natus maxime veritatis odit assumenda.", "image":"", "videoThumbnail":"https://kiasl-content.s3.ap-southeast-1.amazonaws.com/uploads/promotion/2021/11/806bb5a27f_1636020545.jpg", "video":"https://kiasl-content.s3.ap-southeast-1.amazonaws.com/uploads/promotion/2021/11/19a6d9ce75_1636020545.mp4"},
+      {"value":2, "answer":"Hawk", "image":"", "videoThumbnail":"https://kiasl-content.s3.ap-southeast-1.amazonaws.com/uploads/promotion/2021/11/806bb5a27f_1636020545.jpg", "video":"https://kiasl-content.s3.ap-southeast-1.amazonaws.com/uploads/promotion/2021/11/19a6d9ce75_1636020545.mp4"},
       {"value":3, "answer":"Vulture", "image":"https://i.picsum.photos/id/1000/5626/3635.jpg?hmac=qWh065Fr_M8Oa3sNsdDL8ngWXv2Jb-EE49ZIn6c0P-g", "videoThumbnail":"", "video":""},
       {"value":4, "answer":"None of the above", "image":"", "videoThumbnail":"https://kiasl-content.s3.ap-southeast-1.amazonaws.com/uploads/promotion/2021/11/91bd8f8560_1636000073.jpg", "video":"https://kiasl-content.s3.ap-southeast-1.amazonaws.com/uploads/promotion/2021/11/a0eefcdf62_1636000073.mp4"}
     ]
@@ -62,6 +61,15 @@ export class ModalChoosePage implements OnInit {
 
   ionViewWillEnter(){
     this.lankaGamesService.nextQuestion1.next(false);
+  }
+
+  ionViewWillLeave(){
+    if(this.videoModal){
+      this.videoModal.dismiss();
+    }
+    if(this.imageModal){
+      this.imageModal.dismiss();
+    }
   }
 
   async closeModal(){

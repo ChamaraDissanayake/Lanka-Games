@@ -8,7 +8,6 @@ import { IonSlides, ModalController } from '@ionic/angular';
 })
 export class ViewImagePage implements OnInit {
   @Input() url: string;
-  @ViewChild('slides') slides: IonSlides;
   slideOpts = {
     initialSlide: 1
   };
@@ -16,7 +15,6 @@ export class ViewImagePage implements OnInit {
   constructor(private modalController: ModalController,) { }
 
   ngOnInit() {
-    this.slides.lockSwipes(true);
   }
 
   ionViewWillLeave(){
