@@ -18,12 +18,16 @@ export class ModalChoosePage implements OnInit {
       "questionId": 1,
       "questionNo": 1,
       "question": "What is the species name of the bird appear in image?",
+
+      //for image
       "questionImageUrl": "https://i.picsum.photos/id/1024/1920/1280.jpg?hmac=-PIpG7j_fRwN8Qtfnsc3M8-kC3yb0XYOBfVzlPSuVII",
-      // "questionImageUrl": "",
-      // "questionVideoThumbnail":"https://kiasl-content.s3.ap-southeast-1.amazonaws.com/uploads/promotion/2021/11/48f4305c15_1635760285.jpg",
-      // "questionVideoUrl":"https://kiasl-content.s3.ap-southeast-1.amazonaws.com/uploads/promotion/2021/11/534c56fb7a_1635760284.mp4",
       "questionVideoThumbnail":"",
       "questionVideoUrl":""
+
+      // //for video
+      // "questionImageUrl": "",
+      // "questionVideoThumbnail":"https://kiasl-content.s3.ap-southeast-1.amazonaws.com/uploads/promotion/2021/11/48f4305c15_1635760285.jpg",
+      // "questionVideoUrl":"https://kiasl-content.s3.ap-southeast-1.amazonaws.com/uploads/promotion/2021/11/534c56fb7a_1635760284.mp4"
     },
     [
       {"value":1, "answer":"Eagle", "image":"", "videoThumbnail":"https://kiasl-content.s3.ap-southeast-1.amazonaws.com/uploads/promotion/2021/11/806bb5a27f_1636020545.jpg", "video":"https://kiasl-content.s3.ap-southeast-1.amazonaws.com/uploads/promotion/2021/11/19a6d9ce75_1636020545.mp4"},
@@ -74,7 +78,7 @@ export class ModalChoosePage implements OnInit {
 
   async closeModal(){
     await this.modalController.dismiss();
-    this.router.navigateByUrl("/home");
+    this.router.navigateByUrl("/option-choose-category");
   }
 
   selectedAnswer(event){

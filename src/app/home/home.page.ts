@@ -17,7 +17,7 @@ export class HomePage {
     switch (opt) {
       case 1:
         console.log("Choose selected");
-        this.router.navigateByUrl("/option-choose");
+        this.router.navigateByUrl("/option-choose-category");
         break;
 
       case 2:

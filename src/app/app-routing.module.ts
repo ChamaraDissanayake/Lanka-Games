@@ -43,6 +43,10 @@ const routes: Routes = [
     path: 'view-video',
     loadChildren: () => import('./view-video/view-video.module').then( m => m.ViewVideoPageModule)
   },
+  {
+    path: 'option-choose-category',
+    loadChildren: () => import('./option-choose-category/option-choose-category.module').then( m => m.OptionChooseCategoryPageModule)
+  },
 ];
 
 @NgModule({

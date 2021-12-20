@@ -10,8 +10,8 @@
 <ion-content style="--background: rgb(127, 255, 138);">
   <div style="margin: 10px; background: white;">
 
-    <img style="padding: 10px;" [src]="questionImageUrl" (click)="showImage(questionImageUrl)">
-    <ion-card *ngIf="questionVideoUrl != ''">
+    <img *ngIf="questionImageUrl!=''" style="padding: 10px;" [src]="questionImageUrl" (click)="showImage(questionImageUrl)">
+    <ion-card style="margin: unset;" *ngIf="questionVideoUrl != ''">
       <video playinline preload="auto" poster="{{questionVideoThumbnail}}" controls controlsList="nodownload">
         <source [src]="questionVideoUrl" type="video/mp4">
       </video>
@@ -49,6 +49,7 @@
       </ion-radio-group>
     </ion-list>
     <div class="btn-next-wrapper">
+      <ion-button class="btn-next" (click)="closeModal()">Exit</ion-button>
       <ion-button class="btn-next" (click)="next()">Next</ion-button>
     </div>
   </div>

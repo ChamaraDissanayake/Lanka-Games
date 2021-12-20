@@ -10,13 +10,12 @@ export class ViewImagePage implements OnInit {
   @Input() url: string;
   @ViewChild('slides') slider: IonSlides;
 
-  constructor(private modalController: ModalController,) { }
+  constructor(private modalController: ModalController) { }
 
   ngOnInit() {
   }
 
   ionViewDidEnter(){
-    console.log("Entered");
     this.slider.lockSwipes(true);
   }
 

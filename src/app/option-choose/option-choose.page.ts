@@ -55,6 +55,5 @@ export class OptionChoosePage implements OnInit {
     setTimeout(() => {
       this.showModal();
     }, 1000);
-    // this.router.navigateByUrl("/home");
   }
 }
