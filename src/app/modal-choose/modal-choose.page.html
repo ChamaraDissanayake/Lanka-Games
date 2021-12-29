@@ -1,13 +1,10 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>Question {{questionNo}}</ion-title>
-    <div slot="end" class="close-wrapper">
-      <ion-icon name="close" (click)="closeModal()"></ion-icon>
-    </div>
   </ion-toolbar>
 </ion-header>
 
-<ion-content style="--background: rgb(127, 255, 138);">
+<ion-content style="--background: #e9f9ee;">
   <div style="margin: 10px; background: white;">
 
     <img *ngIf="questionImageUrl!=''" style="padding: 10px;" [src]="questionImageUrl" (click)="showImage(questionImageUrl)">
@@ -20,7 +17,7 @@
     <ion-list>
       <ion-radio-group (ionChange)="selectedAnswer($event)">
         <ion-list-header>
-          <ion-label style="font-size: large; padding: 10px;">
+          <ion-label style="font-size: 20px; padding: 10px;">
             {{question}}
           </ion-label>
         </ion-list-header>
@@ -29,8 +26,8 @@
           <ion-row *ngFor="let item of answers; let i = index">
             <ion-col size="9">
               <ion-item>
-                <ion-radio slot="start" value="{{item.value}}"></ion-radio>
-                <label style="overflow-wrap: break-word">{{item.answer}}</label>
+                <ion-radio style="--color-checked: #446d76;" slot="start" value="{{item.value}}"></ion-radio>
+                <ion-label style="overflow-wrap: break-word; color: #446d76">{{item.answer}}</ion-label>
               </ion-item>
             </ion-col>
             <!-- <ion-col size="1">
@@ -49,8 +46,8 @@
       </ion-radio-group>
     </ion-list>
     <div class="btn-next-wrapper">
-      <ion-button class="btn-next" (click)="closeModal()">Exit</ion-button>
-      <ion-button class="btn-next" (click)="next()">Next</ion-button>
+      <ion-button class="btn-submit" shape="round" fill="outline" style="margin-right: 20px;" (click)="closeModal()">Submit</ion-button>
+      <ion-button class="btn-next" shape="round" (click)="next()">Next</ion-button>
     </div>
   </div>
 

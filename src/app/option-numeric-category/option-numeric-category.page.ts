@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-option-choose-category',
-  templateUrl: './option-choose-category.page.html',
-  styleUrls: ['./option-choose-category.page.scss'],
+  selector: 'app-option-numeric-category',
+  templateUrl: './option-numeric-category.page.html',
+  styleUrls: ['./option-numeric-category.page.scss'],
 })
-export class OptionChooseCategoryPage implements OnInit {
+export class OptionNumericCategoryPage implements OnInit {
   category:any = [];
   constructor(private router: Router) { }
 
@@ -21,6 +21,6 @@ export class OptionChooseCategoryPage implements OnInit {
 
   choosedCategory(id){
     console.log(id);
-    this.router.navigateByUrl("/option-choose",{replaceUrl:true});
+    this.router.navigateByUrl("/option-numeric",{replaceUrl:true});
   }
 }

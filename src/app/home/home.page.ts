@@ -22,7 +22,7 @@ export class HomePage {
 
       case 2:
         console.log("Numeric selected");
-        this.router.navigateByUrl("/option-numeric");
+        this.router.navigateByUrl("/option-numeric-category");
         break;
 
       case 3:

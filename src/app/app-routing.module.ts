@@ -47,6 +47,10 @@ const routes: Routes = [
     path: 'option-choose-category',
     loadChildren: () => import('./option-choose-category/option-choose-category.module').then( m => m.OptionChooseCategoryPageModule)
   },
+  {
+    path: 'option-numeric-category',
+    loadChildren: () => import('./option-numeric-category/option-numeric-category.module').then( m => m.OptionNumericCategoryPageModule)
+  },
 ];
 
 @NgModule({
