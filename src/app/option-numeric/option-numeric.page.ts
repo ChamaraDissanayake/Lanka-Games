@@ -12,9 +12,9 @@ export class OptionNumericPage implements OnInit {
   modal: any
   constructor(
     private modalController: ModalController,
-    public lankaGamesService: LankaGamesService
+    public service: LankaGamesService
   ) {
-    this.lankaGamesService.nextQuestion2.subscribe((value) => {
+    this.service.nextQuestion2.subscribe((value) => {
       console.log(value);
       if (true === value) {
         this.modal.dismiss();
@@ -22,7 +22,7 @@ export class OptionNumericPage implements OnInit {
           this.showModal();
         }, 1000);
       } else {
-        console.log("Cancelled by user")
+        console.log("Question displaying")
       }
    });
   }

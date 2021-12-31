@@ -1,18 +1,12 @@
-<ion-header>
-  <ion-buttons slot="start">
-    <ion-back-button style="color: white;" defaultHref="/login"></ion-back-button>
-  </ion-buttons>
-  <ion-toolbar>
-    <ion-title>otp</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content class="background-image" fullscreen="true">
-  <div style="margin-top: 100px;">
+<ion-content class="background-image-light" fullscreen="true">
+  <div>
+    <div style="width: -webkit-fill-available; text-align: center;">
+      <img src="../../assets/images/Lanka Games Icon.png" style="width: 80%;">
+    </div>
     <div style="text-align: center;">
       <div>
-        <ion-label class="text-white topics">
-          Please enter<br> OTP <br> sent to your phone
+        <ion-label class="topics">
+          <h1>Please enter<br> OTP <br> sent to your phone</h1>
         </ion-label>
       </div>
       <div>
@@ -34,10 +28,15 @@
         </ion-row>
         <ion-label color="danger" *ngIf = "isIncorrectOtp">Otp not mached!</ion-label>
       </div>
-      <div style="margin-top: 20px; text-align: center; width: 100%;">
-        <ion-button class="btnNavigate" style="margin-right: 40px;" [disabled]='!isValid' (click)="next()">Confirm</ion-button>
-        <ion-button class="btnNavigate" (click)='reset()'>Reset</ion-button>
+      <div style="margin-top: 20px; text-align: center; width: 100%;">        
+        <ion-button class="btn-submit" shape="round" fill="outline" style="margin-right: 20px;" (click)='reset()'>Reset</ion-button>
+        <ion-button class="btn-next" shape="round" [disabled]='!isValid' (click)="next()">Confirm</ion-button>
       </div>
+
+      <!-- <div class="btn-next-wrapper">
+        <ion-button class="btn-submit" shape="round" fill="outline" style="margin-right: 20px;" (click)="closeModal()">Submit</ion-button>
+        <ion-button class="btn-next" shape="round" (click)="next()">Next</ion-button>
+      </div> -->
     </div>
   </div>
 </ion-content>

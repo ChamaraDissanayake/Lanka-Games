@@ -6,8 +6,10 @@ import { BehaviorSubject } from "rxjs/Rx";
 })
 export class LankaGamesService {
 
-  public nextQuestion1: BehaviorSubject<boolean> = new BehaviorSubject(false);
-  public nextQuestion2: BehaviorSubject<boolean> = new BehaviorSubject(false);
+  public nextQuestion1: BehaviorSubject<boolean> = new BehaviorSubject(null);
+  public nextQuestion2: BehaviorSubject<boolean> = new BehaviorSubject(null);
+
+  public language: string = "en"
 
   constructor() { }
 }

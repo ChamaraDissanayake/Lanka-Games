@@ -17,16 +17,16 @@ export class ModalChoosePage implements OnInit {
 
   questionId: any="";
   questionNo: any="";
-  question: String="";
-  questionImageUrl: String="";
-  questionVideoThumbnail: String="";
-  questionVideoUrl: String="";
+  question: string="";
+  questionImageUrl: string="";
+  questionVideoThumbnail: string="";
+  questionVideoUrl: string="";
   answers: any=[];
 
   constructor(
     private modalController: ModalController,
     private router: Router,
-    public lankaGamesService: LankaGamesService,
+    public service: LankaGamesService,
     private platform: Platform
   ) { }
 
@@ -35,7 +35,7 @@ export class ModalChoosePage implements OnInit {
   }
 
   ionViewWillEnter(){
-    this.lankaGamesService.nextQuestion1.next(false);
+    this.service.nextQuestion1.next(false);
     this.platform.ready().then(()=>{
       this.container = this.arrayContainer;
       this.questionId = this.container[0].questionId;
@@ -59,7 +59,7 @@ export class ModalChoosePage implements OnInit {
 
   async closeModal(){
     await this.modalController.dismiss();
-    this.router.navigateByUrl("/option-choose-category", {replaceUrl: true});
+    this.router.navigateByUrl("/home", {replaceUrl: true});
   }
 
   selectedAnswer(event){
@@ -67,7 +67,7 @@ export class ModalChoosePage implements OnInit {
   }
 
   next(){
-    this.lankaGamesService.nextQuestion1.next(true);
+    this.service.nextQuestion1.next(true);
   }
 
   async showImage(url){

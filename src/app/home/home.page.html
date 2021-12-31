@@ -1,21 +1,37 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      LANKA GAMES
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true" style="--background: yellowgreen;">
+<ion-content [fullscreen]="true" class="background-image">
+  <ion-grid>
+    <ion-row>
+      <ion-col size="4"></ion-col>
+      <ion-col size="4">  
+        <div style="width: -webkit-fill-available; text-align: center;">
+          <img src="../../assets/images/Lanka Games Icon.png" style="width: 50px;">
+        </div> 
+      </ion-col>
+      <ion-col size="3">
+        <ion-select class="custom-select" value="en" (ionChange)="test($event)">
+          <ion-select-option value="en">English</ion-select-option>
+          <ion-select-option value="si">සිංහල</ion-select-option>
+          <ion-select-option value="ta">தமிழ்</ion-select-option>
+        </ion-select>
+      </ion-col>
+      <ion-col size="1"></ion-col>
+    </ion-row>
+  </ion-grid>
+  
   <div style="padding: 20px;">
-    <div style="margin: 5px;">
-      <img src="../../assets/images/option1.jpeg" (click)="gotoOption(1)">
+    <div class="container" (click)="gotoOption(1)">
+      <img src="../../assets/images/option1.jpeg">
+      <h1><ion-label class="lbl-on-image">TEST1</ion-label></h1>
     </div>
-    <div style="margin: 5px;">
-      <img src="../../assets/images/option2.jpeg" (click)="gotoOption(2)">
+    <div class="container" (click)="gotoOption(2)">
+      <img src="../../assets/images/option2.jpeg">
+      <h1><ion-label *ngIf="service.language=='en'" class="lbl-on-image">Mathematical questions</ion-label></h1>
+      <h1><ion-label *ngIf="service.language=='si'" class="lbl-on-image">ගණිත ගැටළු</ion-label></h1>
+      <h1><ion-label *ngIf="service.language=='ta'" class="lbl-on-image">கணிதவியல் பிரச்சனைகள்</ion-label></h1>
     </div>
-    <div style="margin: 5px;">
-      <img src="../../assets/images/option3.jpeg" (click)="gotoOption(3)">
+    <div class="container" (click)="gotoOption(3)">
+      <img src="../../assets/images/option3.jpeg">
+      <h1><ion-label class="lbl-on-image">TEST3</ion-label></h1>
     </div>
   </div>
 </ion-content>

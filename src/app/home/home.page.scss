@@ -1,27 +1,22 @@
-#container {
-  text-align: center;
+img{
+  border-radius: 10px;
+}
 
+.container{
+  position: relative;
+  margin: 5px;
+}
+
+.lbl-on-image{
   position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+  bottom: 10px;
+  left: 10px;
+  text-shadow: 2px 1px 4px darkgreen;
+  color: white;
 }
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
-}
-
-#container p {
-  font-size: 16px;
-  line-height: 22px;
-
-  color: #8c8c8c;
-
-  margin: 0;
-}
-
-#container a {
-  text-decoration: none;
+.custom-select{
+  background: #e9f9ee;
+  border-radius: 10px;
+  color: #446d76;
 }

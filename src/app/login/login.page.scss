@@ -8,6 +8,27 @@
 }
 
 .error-message {
-    margin-left: 10%;
+    margin-left: 20%;
     text-align: left;
+}
+
+.input-style{
+    text-align: center;
+    font-size: x-large;
+    margin: 0 70px;
+    border-radius: 10px;
+    border: 1px solid green;
+}
+
+.cusotm-input{
+    background: palegreen;
+    height: 60px;
+    margin: 10px 0;
+    border-radius: 10px;
+}
+
+.btn-next{
+    font-size: x-large;
+    width: 200px;
+    height: 60px;
 }

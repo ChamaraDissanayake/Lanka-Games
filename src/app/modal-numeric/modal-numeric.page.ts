@@ -14,14 +14,14 @@ export class ModalNumericPage implements OnInit {
   constructor(
     private modalController: ModalController,
     private router: Router,
-    public lankaGamesService: LankaGamesService
+    public service: LankaGamesService
   ) { }
 
   ngOnInit() {
   }
 
   ionViewWillEnter(){
-    this.lankaGamesService.nextQuestion2.next(false);
+    this.service.nextQuestion2.next(false);
   }
 
   ionViewWillLeave(){
@@ -44,10 +44,10 @@ export class ModalNumericPage implements OnInit {
 
   async closeModal(){
     await this.modalController.dismiss();
-    this.router.navigateByUrl("/home");
+    this.router.navigateByUrl("/home", {replaceUrl: true});
   }
 
   next(){
-    this.lankaGamesService.nextQuestion2.next(true);
+    this.service.nextQuestion2.next(true);
   }
 }

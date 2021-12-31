@@ -15,32 +15,32 @@ export class OptionChoosePage implements OnInit {
     {
       "questionId": 1,
       "questionNo": 1,
-      "question": "What is the species name of the bird appear in image?",
+      "question": "Who won the maximum sixes award IPL 2019 season?",
 
-      //for image
-      "questionImageUrl": "https://i.picsum.photos/id/1024/1920/1280.jpg?hmac=-PIpG7j_fRwN8Qtfnsc3M8-kC3yb0XYOBfVzlPSuVII",
+      // //for image
+      "questionImageUrl": "https://images.indianexpress.com/2019/03/ipl-759-2.jpg",
       "questionVideoThumbnail":"",
       "questionVideoUrl":"",
 
       // //for video
       // "questionImageUrl": "",
-      // "questionVideoThumbnail":"https://kiasl-content.s3.ap-southeast-1.amazonaws.com/uploads/promotion/2021/11/48f4305c15_1635760285.jpg",
-      // "questionVideoUrl":"https://kiasl-content.s3.ap-southeast-1.amazonaws.com/uploads/promotion/2021/11/534c56fb7a_1635760284.mp4"
+      // "questionVideoThumbnail":"https://images.indianexpress.com/2019/03/ipl-759-2.jpg",
+      // "questionVideoUrl":"https://lankagames.s3.ap-southeast-1.amazonaws.com/test-video.mp4",
       "answers":
       [
-        {"value":1, "answer":"Eagle", "image":"", "videoThumbnail":"https://kiasl-content.s3.ap-southeast-1.amazonaws.com/uploads/promotion/2021/11/806bb5a27f_1636020545.jpg", "video":"https://kiasl-content.s3.ap-southeast-1.amazonaws.com/uploads/promotion/2021/11/19a6d9ce75_1636020545.mp4"},
-        {"value":2, "answer":"Hawk", "image":"", "videoThumbnail":"https://kiasl-content.s3.ap-southeast-1.amazonaws.com/uploads/promotion/2021/11/806bb5a27f_1636020545.jpg", "video":"https://kiasl-content.s3.ap-southeast-1.amazonaws.com/uploads/promotion/2021/11/19a6d9ce75_1636020545.mp4"},
-        {"value":3, "answer":"Vulture", "image":"https://i.picsum.photos/id/1000/5626/3635.jpg?hmac=qWh065Fr_M8Oa3sNsdDL8ngWXv2Jb-EE49ZIn6c0P-g", "videoThumbnail":"", "video":""},
-        {"value":4, "answer":"None of the above", "image":"", "videoThumbnail":"https://kiasl-content.s3.ap-southeast-1.amazonaws.com/uploads/promotion/2021/11/91bd8f8560_1636000073.jpg", "video":"https://kiasl-content.s3.ap-southeast-1.amazonaws.com/uploads/promotion/2021/11/a0eefcdf62_1636000073.mp4"}
+        {"value":1, "answer":"Andre Russell", "image":"https://images.mid-day.com/images/images/2021/apr/andrerussell-trivia-bday_d.jpg", "videoThumbnail":"", "video":""},
+        {"value":2, "answer":"Dinesh Karthik", "image":"https://cdn.dnaindia.com/sites/default/files/styles/full/public/2019/04/18/814311-dinesh-karthik-afp.jpg", "videoThumbnail":"", "video":""},
+        {"value":3, "answer":"Chris Lynn", "image":"https://images.news18.com/ibnlive/uploads/2018/04/Lynn.jpg", "videoThumbnail":"", "video":""},
+        // {"value":4, "answer":"None of the above", "image":"", "videoThumbnail":"", "video":""}
       ]
     },
   ];
 
   constructor(
     private modalController: ModalController,
-    public lankaGamesService: LankaGamesService
+    public service: LankaGamesService
   ) {
-    this.lankaGamesService.nextQuestion1.subscribe((value) => {
+    this.service.nextQuestion1.subscribe((value) => {
       console.log(value);
       if (true === value) {
         this.modal.dismiss();

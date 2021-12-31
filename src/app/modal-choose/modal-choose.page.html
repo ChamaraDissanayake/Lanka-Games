@@ -4,11 +4,13 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content style="--background: #e9f9ee;">
-  <div style="margin: 10px; background: white;">
+<ion-content class="background-image">
+  <div class="main-container">
 
-    <img *ngIf="questionImageUrl!=''" style="padding: 10px;" [src]="questionImageUrl" (click)="showImage(questionImageUrl)">
-    <ion-card style="margin: unset;" *ngIf="questionVideoUrl != ''">
+    <div style="margin: 10px;" *ngIf="questionImageUrl!=''">
+      <img [src]="questionImageUrl" (click)="showImage(questionImageUrl)">
+    </div>    
+    <ion-card style="margin: unset; padding: 5px;" *ngIf="questionVideoUrl != ''">
       <video playinline preload="auto" poster="{{questionVideoThumbnail}}" controls controlsList="nodownload">
         <source [src]="questionVideoUrl" type="video/mp4">
       </video>

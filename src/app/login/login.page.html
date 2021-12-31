@@ -1,14 +1,11 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>login</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content class="background-image" fullscreen="true">
-  
-  <form [formGroup]="signup" (ngSubmit)="submitDetails()">
-    <div class="text-white main-div">
-      <div>
+<ion-content class="background-image-light" fullscreen="true">
+  <div>
+    <div style="width: -webkit-fill-available; text-align: center;">
+      <img src="../../assets/images/Lanka Games Icon.png" style="width: 80%;">
+    </div>    
+    <form [formGroup]="signup" (ngSubmit)="submitDetails()">
+      <div class="text-white main-div">
+        <!-- <div>
         <ion-label class="topics">Enter your name</ion-label>
       </div>
       <div class="input-wrapper">
@@ -23,28 +20,31 @@
             </div>
           </ng-container>
         </div>
-      </div>
-  
-      <div class="text-white main-div">
-        <div>
-          <ion-label class="topics">Mobile number</ion-label>
-        </div>
-        <div class="input-wrapper">
-          <ion-item class="input-style">
-            <ion-input type="tel" maxlength="10" minlength="10" placeholder="07X XX XX XXX" formControlName="mobile"></ion-input>
-          </ion-item>
-          <div class="validation-errors">
-            <ng-container *ngFor="let validation of validation_messages.mobile">
-              <div class="error-message"
-                *ngIf="signup.get('mobile').hasError(validation.type) && (signup.get('mobile').dirty || signup.get('mobile').touched)">
-                {{ validation.message }}
-              </div>
-            </ng-container>
+      </div> -->
+
+        <div class="text-white main-div">
+          <div>
+            <ion-label class="topics">
+              <h1>Enter your mobile number</h1>
+            </ion-label>
+          </div>
+          <div class="input-wrapper">
+            <ion-item class="input-style">
+              <ion-input type="tel" maxlength="10" minlength="10" placeholder="07X XX XX XXX" formControlName="mobile">
+              </ion-input>
+            </ion-item>
+            <div class="validation-errors">
+              <ng-container *ngFor="let validation of validation_messages.mobile">
+                <div class="error-message"
+                  *ngIf="signup.get('mobile').hasError(validation.type) && (signup.get('mobile').dirty || signup.get('mobile').touched)">
+                  {{ validation.message }}
+                </div>
+              </ng-container>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div>
+        <!-- <div>
         <ion-label class="topics">Email address</ion-label>
       </div>
       <div class="input-wrapper">
@@ -59,15 +59,16 @@
             </div>
           </ng-container>
         </div>
+      </div> -->
       </div>
-    </div>
 
-    <div style="margin-top: 50px; text-align: center;">
-      <ion-button type="submit" [disabled]="!signup.valid" class="btnNavigate" style="margin-right: 40px;">Submit</ion-button>
-      <ion-button class="btnNavigate" [routerLink]="['/login']">Back</ion-button>
-      <ion-button class="btnNavigate" [routerLink]="['/home']"  style="margin-left: 40px;">Skip</ion-button>
-    </div>
+      <div style="margin-top: 30px; text-align: center;">
+        <ion-button type="submit" [disabled]="!signup.valid" class="btn-next" shape="round">Submit</ion-button>
+        <!-- <ion-button type="submit" [disabled]="!signup.valid" class="btnNavigate" style="margin-right: 40px;">Submit</ion-button>
+      <ion-button [routerLink]="['/login']">Back</ion-button>
+      <ion-button [routerLink]="['/home']"  style="margin-left: 40px;">Skip</ion-button> -->
+      </div>
 
-  </form>
-  
+    </form>
+  </div>
 </ion-content>
