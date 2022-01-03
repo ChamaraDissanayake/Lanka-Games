@@ -43,7 +43,10 @@ export class OptionChoosePage implements OnInit {
     this.service.nextQuestion1.subscribe((value) => {
       console.log(value);
       if (true === value) {
-        this.modal.dismiss();
+        if(this.modal){
+          this.modal.dismiss();
+        }
+        
         setTimeout(() => {
           this.showModal();
         }, 1000);
@@ -62,27 +65,27 @@ export class OptionChoosePage implements OnInit {
   }
 
   async showModal() {
-    this.modal = await this.modalController.create({
-      component: ModalChoosePage,
-      cssClass: 'custom-modal',
-      componentProps: {
-        "arrayContainer":this.arrayContainer
-      },
-      backdropDismiss: false
-    })
-    await this.modal.present();
+    if(this.service.displayModal){
+      this.service.displayModal = false;
+      this.modal = await this.modalController.create({
+        component: ModalChoosePage,
+        cssClass: 'custom-modal',
+        componentProps: {
+          "arrayContainer":this.arrayContainer
+        },
+        backdropDismiss: false
+      })
+      await this.modal.present();
+  
+      setTimeout(() => {
+        this.service.displayModal = true;
+      }, 500);
+    }  
   }
 
   ionViewWillLeave(){
     if(this.modal){
       this.modal.dismiss();
     }
-  }
-
-  next(){
-    this.modal.dismiss();
-    setTimeout(() => {
-      this.showModal();
-    }, 1000);
   }
 }

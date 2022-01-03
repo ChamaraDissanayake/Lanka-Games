@@ -10,14 +10,18 @@ import { ModalNumericPage } from '../modal-numeric/modal-numeric.page';
 })
 export class OptionNumericPage implements OnInit {
   modal: any
+
   constructor(
     private modalController: ModalController,
     public service: LankaGamesService
   ) {
     this.service.nextQuestion2.subscribe((value) => {
-      console.log(value);
+      console.log("nextQuestion2 value", value);
       if (true === value) {
-        this.modal.dismiss();
+        if(this.modal){
+          this.modal.dismiss();  
+        }
+        
         setTimeout(() => {
           this.showModal();
         }, 1000);
@@ -36,12 +40,18 @@ export class OptionNumericPage implements OnInit {
   }
 
   async showModal() {
-    this.modal = await this.modalController.create({
-      component: ModalNumericPage,
-      cssClass: 'custom-modal',
-      backdropDismiss: false
-    })
-    await this.modal.present();
+    if(this.service.displayModal){
+      this.service.displayModal = false;
+      this.modal = await this.modalController.create({
+        component: ModalNumericPage,
+        cssClass: 'custom-modal',
+        backdropDismiss: false
+      })
+      await this.modal.present();
+      setTimeout(() => {
+        this.service.displayModal = true;
+      }, 500);
+    }    
   }
 
   ionViewWillLeave(){
@@ -50,10 +60,4 @@ export class OptionNumericPage implements OnInit {
     }
   }
 
-  next(){
-    this.modal.dismiss();
-    setTimeout(() => {
-      this.showModal();
-    }, 1000);
-  }
 }
