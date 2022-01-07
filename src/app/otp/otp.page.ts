@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Storage } from '@ionic/storage';
+import { LankaGamesService } from '../lanka-games.service';
 @Component({
   selector: 'app-otp',
   templateUrl: './otp.page.html',
@@ -16,7 +18,9 @@ export class OtpPage implements OnInit {
 
   constructor(
     private router: Router,
-    private http: HttpClient) { }
+    private http: HttpClient,
+    private storage: Storage,
+    private service: LankaGamesService) { }
 
   ngOnInit() {
   }
@@ -82,6 +86,27 @@ export class OtpPage implements OnInit {
     // });
     
     console.log("otp ", this.otp1.value+this.otp2.value+this.otp3.value+this.otp4.value);
-    this.router.navigateByUrl("/home");
+    this.service.userPhone = "0771234567";
+    this.storage.set("phone","0771234567");    
+    this.loadApp();
+  }
+
+  loadApp(){
+    let headers: any = new HttpHeaders({ 'Content-Type': 'application/json' }),
+    options: any = {
+      phone: this.service.userPhone
+    },
+    url: any = this.service.baseURL + 'Loading';
+
+    this.http.post(url, JSON.stringify(options), headers)
+    .subscribe((data: any) => {
+      console.log("Login",data)
+      this.service.userId = data.user_id;
+      this.service.language = data.language;
+      this.router.navigateByUrl("/home");
+    },
+    (error: any) => {
+      console.log('Something went wrong!', error);
+    });
   }
 }

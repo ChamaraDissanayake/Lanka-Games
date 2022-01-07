@@ -4,7 +4,7 @@
 }
 
 .main-container{
-    margin: 10px;
+    margin: 0 10px;
     background: white;
     border-radius: 10px;
 }
@@ -18,4 +18,19 @@
 
 img{
     border-radius: 10px;
+}
+
+video{
+    max-width: 100%;
+    max-height: 100%;
+    display: inline-block;
+    vertical-align: middle;
+    border-radius: 10px;
+}
+
+.play-button{
+    position: absolute;
+    color: white;
+    left: 33%;
+    top: 14px;
 }

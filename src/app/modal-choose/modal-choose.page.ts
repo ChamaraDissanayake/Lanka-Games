@@ -1,3 +1,4 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ModalController, Platform } from '@ionic/angular';
@@ -22,12 +23,16 @@ export class ModalChoosePage implements OnInit {
   questionVideoThumbnail: string="";
   questionVideoUrl: string="";
   answers: any=[];
+  answerId: number = 0;
+  continue: boolean = false;
+  notFirstLoad: boolean = false;
 
   constructor(
     private modalController: ModalController,
     private router: Router,
     public service: LankaGamesService,
-    private platform: Platform
+    private platform: Platform,
+    private http: HttpClient
   ) { }
 
   ngOnInit() {
@@ -45,6 +50,7 @@ export class ModalChoosePage implements OnInit {
       this.questionVideoThumbnail = this.container[0].questionVideoThumbnail;
       this.questionVideoUrl = this.container[0].questionVideoUrl;
       this.answers = this.container[0].answers;
+      this.answerId = this.answers[0].answerId;
     })
   }
 
@@ -57,17 +63,48 @@ export class ModalChoosePage implements OnInit {
     }
   }
 
+  selectedAnswer(event){
+    if(this.notFirstLoad){
+      this.answerId = event.target.value;      
+    }else{
+      this.notFirstLoad = true;
+    }
+  }
+  
   async closeModal(){
+    this.continue = false;
+    this.submitAnswer();
     await this.modalController.dismiss();
     this.router.navigateByUrl("/home", {replaceUrl: true});
   }
 
-  selectedAnswer(event){
-    console.log(event.target.value);
+  next(){    
+    this.continue = true;
+    this.submitAnswer();
   }
 
-  next(){
-    this.service.nextQuestion1.next(true);
+  submitAnswer(){
+    console.log("user_id", this.service.userId,
+    "question_id", this.questionId,
+    "answer_id", this.answerId)
+    let headers: any = new HttpHeaders({ 'Content-Type': 'application/json' }),
+    options: any = {
+      "user_id": this.service.userId,
+      "question_id": this.questionId,
+      "answer_id": this.answerId
+    },
+    url: any = this.service.baseURL + 'saveUserAnswer';
+
+    this.http.post(url, JSON.stringify(options), headers)
+    .subscribe((data: any) => {
+      console.log("submitAnswer",data);
+      if(this.continue){
+        this.service.nextQuestion1.next(true);
+      }
+    },
+    (error: any) => {
+      console.log('Something went wrong!', error);
+    }); 
   }
 
   async showImage(url){

@@ -1,21 +1,34 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Question 1</ion-title>
+    <ion-title>Question {{questionNo}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="background-image">
-  <div class="main-container">
-    <div style="padding: 10px;">
-      <img src="https://i.stack.imgur.com/GZgel.png" alt="Lanka Games" (click)="showImage('https://i.stack.imgur.com/GZgel.png')">
-      <ion-label style="font-size: 20px;">In the above question number of triangle are?</ion-label>
-      <ion-input type="tel" class="cusotm-input" placeholder="Your answer here"></ion-input>
-    </div>
-  
-    <div class="btn-next-wrapper">
-      <ion-button class="btn-submit" shape="round" fill="outline" style="margin-right: 20px;" (click)="closeModal()">Submit</ion-button>
-      <ion-button class="btn-next" shape="round" (click)="next()">Next</ion-button>
+  <div style="padding: 10px 0;">
+    <div class="main-container">
+
+      <div style="margin: 0 10px 10px 10px;" *ngIf="questionImageUrl!=''">
+        <img [src]="questionImageUrl" (click)="showImage(questionImageUrl)">
+      </div>
+      <ion-card style="margin: unset; padding: 5px;" *ngIf="questionVideoUrl != ''">
+        <video playinline preload="auto" poster="{{questionVideoThumbnail}}" controls controlsList="nodownload">
+          <source [src]="questionVideoUrl" type="video/mp4">
+        </video>
+      </ion-card>
+
+      <div style="margin: 10px;">
+        <ion-label style="font-size: 20px; padding: 10px;">
+          {{question}}
+        </ion-label>
+        <ion-input #inputValue type="tel" class="cusotm-input" placeholder="Your answer here"></ion-input>
+      </div>
+
+      <div class="btn-next-wrapper">
+        <ion-button [disabled]="inputValue.value==''" class="btn-submit" shape="round" fill="outline"
+          style="margin-right: 20px;" (click)="closeModal()">Submit</ion-button>
+        <ion-button [disabled]="inputValue.value==''" class="btn-next" shape="round" (click)="next()">Next</ion-button>
+      </div>
     </div>
   </div>
-  
 </ion-content>

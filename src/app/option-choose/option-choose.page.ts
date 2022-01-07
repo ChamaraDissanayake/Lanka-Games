@@ -1,5 +1,7 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { Router } from '@angular/router';
+import { AlertController, ModalController } from '@ionic/angular';
 import { LankaGamesService } from '../lanka-games.service';
 import { ModalChoosePage } from '../modal-choose/modal-choose.page';
 
@@ -10,35 +12,15 @@ import { ModalChoosePage } from '../modal-choose/modal-choose.page';
 })
 export class OptionChoosePage implements OnInit {
   modal: any;
-  arrayContainer:any = 
-  [
-    {
-      "questionId": 1,
-      "questionNo": 1,
-      "question": "Who won the maximum sixes award IPL 2019 season?",
+  arrayContainer:any;
 
-      // //for image
-      "questionImageUrl": "https://images.indianexpress.com/2019/03/ipl-759-2.jpg",
-      "questionVideoThumbnail":"",
-      "questionVideoUrl":"",
-
-      // //for video
-      // "questionImageUrl": "",
-      // "questionVideoThumbnail":"https://images.indianexpress.com/2019/03/ipl-759-2.jpg",
-      // "questionVideoUrl":"https://lankagames.s3.ap-southeast-1.amazonaws.com/test-video.mp4",
-      "answers":
-      [
-        {"value":1, "answer":"Andre Russell", "image":"https://images.mid-day.com/images/images/2021/apr/andrerussell-trivia-bday_d.jpg", "videoThumbnail":"", "video":""},
-        {"value":2, "answer":"Dinesh Karthik", "image":"https://cdn.dnaindia.com/sites/default/files/styles/full/public/2019/04/18/814311-dinesh-karthik-afp.jpg", "videoThumbnail":"", "video":""},
-        {"value":3, "answer":"Chris Lynn", "image":"https://images.news18.com/ibnlive/uploads/2018/04/Lynn.jpg", "videoThumbnail":"", "video":""},
-        // {"value":4, "answer":"None of the above", "image":"", "videoThumbnail":"", "video":""}
-      ]
-    },
-  ];
 
   constructor(
     private modalController: ModalController,
-    public service: LankaGamesService
+    public service: LankaGamesService,
+    private http: HttpClient,
+    private alertController: AlertController,
+    private router: Router
   ) {
     this.service.nextQuestion1.subscribe((value) => {
       console.log(value);
@@ -48,8 +30,8 @@ export class OptionChoosePage implements OnInit {
         }
         
         setTimeout(() => {
-          this.showModal();
-        }, 1000);
+          this.getQuestion();
+        }, 200);
       } else {
         console.log("Question displaying")
       }
@@ -61,7 +43,30 @@ export class OptionChoosePage implements OnInit {
   }
 
   ionViewDidEnter(){
-    this.showModal();
+    this.getQuestion();    
+  }
+
+  getQuestion(){
+    let headers: any = new HttpHeaders({ 'Content-Type': 'application/json' }),
+    options: any = {
+      "game_category_id": this.service.gameCategoryId,
+      "user_id": this.service.userId
+    },
+    url: any = this.service.baseURL + 'getQuestion';
+
+    this.http.post(url, JSON.stringify(options), headers)
+    .subscribe((data: any) => {
+      console.log("getQuestion",data)
+      this.arrayContainer = data;
+      if(data.length){
+        this.showModal();
+      }else{
+        this.alertEmpty();
+      }
+    },
+    (error: any) => {
+      console.log('Something went wrong!', error);
+    }); 
   }
 
   async showModal() {
@@ -81,6 +86,23 @@ export class OptionChoosePage implements OnInit {
         this.service.displayModal = true;
       }, 500);
     }  
+  }
+
+
+  async alertEmpty() {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Alert!',
+      message: 'No more questions available for now!',
+      buttons: [{
+          text: 'Okay',
+          handler: () => {
+            this.router.navigateByUrl("/home");
+          }
+        }
+      ]
+    });
+    await alert.present();
   }
 
   ionViewWillLeave(){
