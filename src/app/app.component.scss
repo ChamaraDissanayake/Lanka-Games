@@ -7,3 +7,10 @@
 ion-item{
     --background: transparent;
 }
+
+@media (min-width: 500px) {
+    .app-wrapper {
+        width: 500px;
+        margin: auto;
+    }
+}

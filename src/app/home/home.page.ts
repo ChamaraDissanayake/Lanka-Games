@@ -125,4 +125,8 @@ export class HomePage {
   resetVariables(){
     this.service.gameCategoryId = 0;
   }
+
+  fullScreenSwitch(){
+    this.service.halfScreen = !this.service.halfScreen;
+  }
 }

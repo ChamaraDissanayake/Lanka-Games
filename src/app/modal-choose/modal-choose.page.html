@@ -1,6 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>Question {{questionNo}}</ion-title>
+    <ion-icon name="home-outline" slot="end" class="btn-home" [routerLink]="'/home'"></ion-icon>
   </ion-toolbar>
 </ion-header>
 
@@ -33,17 +34,11 @@
                   <ion-label style="overflow-wrap: break-word; color: #446d76">{{item.answer}}</ion-label>
                 </ion-item>
               </ion-col>
-              <!-- <ion-col size="1">
-              <ion-icon name="play-circle" size="large" style="color: aqua;" *ngIf="item.videoThumbnail"
-                (click)="showVideo(item.video, item.videoThumbnail)"></ion-icon>
-            </ion-col> -->
               <ion-col size="3">
                 <img (click)="showImage(item.image)" class="thumbnail" [src]="item.image">
-                <!-- <ion-item> -->
                 <ion-icon class="play-button" name="play-circle-outline" size="large" *ngIf="item.videoThumbnail"
                   (click)="showVideo(item.video, item.videoThumbnail)"></ion-icon>
                 <img (click)="showVideo(item.video, item.videoThumbnail)" class="thumbnail" [src]="item.videoThumbnail">
-                <!-- </ion-item> -->
               </ion-col>
             </ion-row>
           </ion-grid>
