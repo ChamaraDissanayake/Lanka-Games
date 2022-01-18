@@ -27,7 +27,6 @@ img{
 }
 
 .main-container{
-    margin: 0 10px;
     background: white;
     border-radius: 10px;
     overflow: hidden;
@@ -36,4 +35,16 @@ img{
 .btn-home{
     margin-right: 20px;
     font-size: x-large;
+}
+
+.green-border{
+    border: 1px solid green;
+}
+
+.red-border{
+    border: 1px solid red;
+}
+
+.gray-border{
+    border: 1px solid gray;
 }

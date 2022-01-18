@@ -6,9 +6,14 @@
 </ion-header>
 
 <ion-content class="background-image">
-  <div style="padding: 10px 0;">
+  <div style="padding: 10px">
     <div class="main-container">
-
+      <div style="width: -webkit-fill-available;">
+        <ion-item style="float: right;">
+          <img src="../../assets/images/clock-smiling-face-animated-clipart.gif" style="width: 60px;">
+          <ion-label style="font-size: xx-large; min-width: 40px;">{{time}}</ion-label>
+        </ion-item>        
+      </div>
       <div style="margin: 0 10px 10px 10px;" *ngIf="questionImageUrl!=''">
         <img [src]="questionImageUrl" (click)="showImage(questionImageUrl)">
       </div>
@@ -28,7 +33,7 @@
       <div class="btn-next-wrapper">
         <ion-button [disabled]="inputValue.value==''" class="btn-submit" shape="round" fill="outline"
           style="margin-right: 20px;" (click)="closeModal()">Submit</ion-button>
-        <ion-button *ngIf="service.numericQuestionArray.length" [disabled]="inputValue.value==''" class="btn-next" shape="round" (click)="next()">Next</ion-button>
+        <ion-button *ngIf="arrayContainer.length!=0" [disabled]="inputValue.value==''" class="btn-next" shape="round" (click)="next()">Next</ion-button>
       </div>
     </div>
   </div>

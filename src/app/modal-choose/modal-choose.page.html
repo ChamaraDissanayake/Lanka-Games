@@ -1,14 +1,19 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>Question {{questionNo}}</ion-title>
-    <ion-icon name="home-outline" slot="end" class="btn-home" [routerLink]="'/home'"></ion-icon>
+    <ion-icon name="home-outline" slot="end" class="btn-home" (click)="goHome()"></ion-icon>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="background-image">
-  <div>
-    <div class="main-container" style="padding: 10px 0;">
-
+  <div *ngIf="container.length" style="padding: 10px;">
+    <div class="main-container">
+      <div style="width: -webkit-fill-available;" *ngIf="!isSubmited">
+        <ion-item style="float: right;">
+          <img src="../../assets/images/clock-smiling-face-animated-clipart.gif" style="width: 60px;">
+          <ion-label style="font-size: xx-large; min-width: 40px;">{{time}}</ion-label>
+        </ion-item>        
+      </div>
       <div style="margin: 10px;" *ngIf="questionImageUrl!=''">
         <img [src]="questionImageUrl" (click)="showImage(questionImageUrl)">
       </div>
@@ -29,10 +34,19 @@
           <ion-grid>
             <ion-row *ngFor="let item of answers; let i = index">
               <ion-col size="9">
-                <ion-item>
-                  <ion-radio style="--color-checked: #446d76;" slot="start" value="{{item.answerId}}"></ion-radio>
-                  <ion-label style="overflow-wrap: break-word; color: #446d76">{{item.answer}}</ion-label>
-                </ion-item>
+                <div [ngClass]="{'green-border': item.correct && isSubmited && item.answerId==answerId}">
+                  <div [ngClass]="{'red-border': !item.correct && isSubmited && item.answerId==answerId}">
+                    <div [ngClass]="{'gray-border': item.correct && isSubmited && item.answerId!=answerId}">
+                      <ion-item>
+                        <ion-radio [disabled]="isSubmited" style="--color-checked: #446d76;" slot="start" value="{{item.answerId}}"></ion-radio>
+                        <ion-label style="overflow-wrap: break-word; color: #446d76">{{item.answer}}</ion-label>
+                        <ion-icon *ngIf="item.correct && isSubmited && item.answerId==answerId" name="checkmark-outline" style="color: darkgreen;"></ion-icon>
+                        <ion-icon *ngIf="!item.correct && isSubmited && item.answerId==answerId" name="close-outline" style="color: red;"></ion-icon>
+                      </ion-item>
+                    </div>                    
+                  </div>
+                </div>
+                
               </ion-col>
               <ion-col size="3">
                 <img (click)="showImage(item.image)" class="thumbnail" [src]="item.image">
@@ -44,10 +58,13 @@
           </ion-grid>
         </ion-radio-group>
       </ion-list>
-      <div class="btn-next-wrapper">
-        <ion-button class="btn-submit" shape="round" fill="outline" style="margin-right: 20px;" (click)="closeModal()">
+      <div class="btn-next-wrapper" *ngIf="!isSubmited">
+        <ion-button [disabled]="0>=answerId" class="btn-submit" shape="round" fill="outline" style="margin-right: 20px;" (click)="closeModal()">
           Submit</ion-button>
-        <ion-button class="btn-next" shape="round" (click)="next()">Next</ion-button>
+        <ion-button [disabled]="0>=answerId" class="btn-next" shape="round" (click)="next()">Next</ion-button>
+      </div>
+      <div class="btn-next-wrapper" *ngIf="isSubmited">
+        <ion-button class="btn-next" shape="round" (click)="nextQuestion()">Next</ion-button>
       </div>
     </div>
   </div>

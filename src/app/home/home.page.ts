@@ -62,12 +62,12 @@ export class HomePage {
       switch (game.game_type) {
         case 'General':
           console.log("Choose selected");
-          this.router.navigateByUrl("/option-choose");
+          this.router.navigateByUrl("/modal-choose");
           break;
   
         case 'Prediction':
           console.log("Numeric selected");
-          this.router.navigateByUrl("/option-numeric");
+          this.router.navigateByUrl("/modal-numeric");
           break;
   
         case 'Bid':

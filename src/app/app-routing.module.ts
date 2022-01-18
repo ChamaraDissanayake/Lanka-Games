@@ -20,14 +20,6 @@ const routes: Routes = [
     loadChildren: () => import('./otp/otp.module').then( m => m.OtpPageModule)
   },
   {
-    path: 'option-choose',
-    loadChildren: () => import('./option-choose/option-choose.module').then( m => m.OptionChoosePageModule)
-  },
-  {
-    path: 'option-numeric',
-    loadChildren: () => import('./option-numeric/option-numeric.module').then( m => m.OptionNumericPageModule)
-  },
-  {
     path: 'modal-numeric',
     loadChildren: () => import('./modal-numeric/modal-numeric.module').then( m => m.ModalNumericPageModule)
   },
