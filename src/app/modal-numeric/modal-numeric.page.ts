@@ -34,6 +34,7 @@ export class ModalNumericPage implements OnInit {
   ) { }
 
   ngOnInit() {
+    console.log("Modal on init", this.service.numericQuestionArray.length)
   }
 
   ionViewWillEnter(){
@@ -42,12 +43,12 @@ export class ModalNumericPage implements OnInit {
       this.container = this.arrayContainer;
 
       console.log("Chamara" ,this.container)
-      this.questionId = this.container[0].questionId;
-      this.questionNo = this.container[0].questionNo;
-      this.question = this.container[0].question;
-      this.questionImageUrl = this.container[0].questionImageUrl;
-      this.questionVideoThumbnail = this.container[0].questionVideoThumbnail;
-      this.questionVideoUrl = this.container[0].questionVideoUrl;
+      this.questionId = this.container.questionId;
+      this.questionNo = this.container.questionNo;
+      this.question = this.container.question;
+      this.questionImageUrl = this.container.questionImageUrl;
+      this.questionVideoThumbnail = this.container.questionVideoThumbnail;
+      this.questionVideoUrl = this.container.questionVideoUrl;
     })
   }
 
@@ -71,14 +72,14 @@ export class ModalNumericPage implements OnInit {
 
   async closeModal(){
     this.continue = false;
-    // this.submitAnswer();
+    this.submitAnswer();
     await this.modalController.dismiss();
     this.router.navigateByUrl("/home", {replaceUrl: true});
   }
 
   next(){    
     this.continue = true;
-    // this.submitAnswer();
+    this.submitAnswer();
   }
 
   submitAnswer(){
@@ -86,9 +87,9 @@ export class ModalNumericPage implements OnInit {
     options: any = {
       "user_id": this.service.userId,
       "question_id": this.questionId,
-      "answer_id": 5
+      "answer": this.inputValue.value
     },
-    url: any = this.service.baseURL + 'saveUserAnswer';
+    url: any = this.service.baseURL + 'prediction/saveQuestion';
 
     this.http.post(url, JSON.stringify(options), headers)
     .subscribe((data: any) => {

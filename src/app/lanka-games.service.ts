@@ -6,7 +6,7 @@ import { BehaviorSubject } from "rxjs/Rx";
 })
 export class LankaGamesService {
 
-  public baseURL: string = "https://lankagames.evokemusic.net/api/v1/";
+  public baseURL: string = "http://lankagames.lk/api/v1/";
 
   public nextQuestion1: BehaviorSubject<boolean> = new BehaviorSubject(null);
   public nextQuestion2: BehaviorSubject<boolean> = new BehaviorSubject(null);
@@ -19,6 +19,6 @@ export class LankaGamesService {
   public halfScreen: boolean = true; // Usage: Web view full screen when play a game in full screen
 
   public gameCategoryId: number = 0;
-
+  public numericQuestionArray: any = [];
   constructor() { }
 }

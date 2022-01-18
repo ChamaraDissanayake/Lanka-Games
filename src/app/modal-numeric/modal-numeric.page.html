@@ -28,7 +28,7 @@
       <div class="btn-next-wrapper">
         <ion-button [disabled]="inputValue.value==''" class="btn-submit" shape="round" fill="outline"
           style="margin-right: 20px;" (click)="closeModal()">Submit</ion-button>
-        <ion-button [disabled]="inputValue.value==''" class="btn-next" shape="round" (click)="next()">Next</ion-button>
+        <ion-button *ngIf="service.numericQuestionArray.length" [disabled]="inputValue.value==''" class="btn-next" shape="round" (click)="next()">Next</ion-button>
       </div>
     </div>
   </div>

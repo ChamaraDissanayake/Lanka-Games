@@ -94,6 +94,7 @@ export class OptionChoosePage implements OnInit {
       cssClass: 'my-custom-class',
       header: 'Alert!',
       message: 'No more questions available for now!',
+      backdropDismiss: false,
       buttons: [{
           text: 'Okay',
           handler: () => {

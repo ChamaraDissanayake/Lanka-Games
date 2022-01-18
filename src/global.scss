@@ -72,10 +72,55 @@ ion-toolbar{
     --background:#c8f1d4;
 }
 
+
+
+
+.alert-wrapper.sc-ion-alert-md {
+    background: #e9f9ee;
+    border: 1px solid #446d76;
+    border-radius: 10px;
+    color: #446d76;
+}
+
+.alert-button-inner.sc-ion-alert-md {
+    color: #446d76;
+}
+
+.alert-title.sc-ion-alert-md {
+    color: #446d76;
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.alert-message.sc-ion-alert-md {
+    max-height: 240px;
+    font-size: 20px;
+    color: #446d76;
+}
+
+.alert-radio-label.sc-ion-alert-md {
+    color: #446d76;
+}
+
+[aria-checked=true].sc-ion-alert-md .alert-radio-icon.sc-ion-alert-md {
+    border-color: #446d76;
+}
+
+.alert-radio-inner.sc-ion-alert-md {
+    background-color: #446d76;
+}
+
+.alert-radio-group.sc-ion-alert-md, .alert-checkbox-group.sc-ion-alert-md {    
+    border-top: 1px solid #446d76;
+    border-bottom: 1px solid #446d76;
+}
+
+
+
 //To web view
 
 body{
-    background: darkolivegreen;
+    background: #446d76;
 }
 
 .modal-wrapper.sc-ion-modal-md {
