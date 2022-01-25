@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from "rxjs/Rx";
 
 @Injectable({
   providedIn: 'root'
 })
 export class LankaGamesService {
 
-  public baseURL: string = "http://lankagames.lk/api/v1/";
+  public baseURL: string = "https://lankagames.lk/api/v1/";
 
   public userId: number = 0;
   public userPhone: string = "";

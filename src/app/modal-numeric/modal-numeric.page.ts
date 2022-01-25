@@ -22,7 +22,7 @@ export class ModalNumericPage implements OnInit {
   questionVideoThumbnail: string="";
   questionVideoUrl: string="";
   continue: boolean = false;
-  time: number = 25;
+  time: number = 30;
   interval: any;
 
   @ViewChild('inputValue') inputValue: { value: any; };
@@ -137,7 +137,7 @@ export class ModalNumericPage implements OnInit {
 
   startTimer() {
     clearInterval(this.interval);
-    this.time = 25;
+    this.time = 30;
     this.interval = setInterval(() => {
       if (this.time > 0) {
         this.time--;

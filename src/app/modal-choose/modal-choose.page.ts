@@ -24,7 +24,7 @@ export class ModalChoosePage implements OnInit {
   answers: any = [];
   answerId: number = -1;
   continue: boolean = false;
-  time: number = 25;
+  time: number = 30;
   interval: any;
   isSubmited: boolean = false;
 
@@ -40,13 +40,8 @@ export class ModalChoosePage implements OnInit {
 
   }
 
-  ngOnDestroy(){
-    console.log("page destroyed")
-  }
-
   async ionViewWillEnter() {
     this.getQuestion();
-    console.log("Ion view Will enter working")
   }
 
   ionViewWillLeave() {
@@ -76,7 +71,7 @@ export class ModalChoosePage implements OnInit {
 
   startTimer() {
     clearInterval(this.interval);
-    this.time = 25;
+    this.time = 30;
     this.interval = setInterval(() => {
       if (this.time > 0) {
         this.time--;
