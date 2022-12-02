@@ -108,7 +108,7 @@ export class HomePage {
 
     this.http.post(url, JSON.stringify(options), headers)
     .subscribe((data: any) => {
-      console.log("getGameCategoryData",data)
+      // console.log("getGameCategoryData",data)
       this.gameList = data;
     },
     (error: any) => {
